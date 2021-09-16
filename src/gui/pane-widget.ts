@@ -20,7 +20,7 @@ import { IPaneView } from '../views/pane/ipane-view';
 import { createBoundCanvas, getContext2D, Size } from './canvas-utils';
 import { ChartWidget } from './chart-widget';
 import { KineticAnimation } from './kinetic-animation';
-import { MouseEventHandler, Position, TouchMouseEvent } from './mouse-event-handler';
+import { MouseEventHandler, Position, TouchMouseEvent, TouchMouseEventLocal } from './mouse-event-handler';
 import { PriceAxisWidget, PriceAxisWidgetSide } from './price-axis-widget';
 import { isMobile, mobileTouch } from './support-touch';
 
@@ -284,7 +284,7 @@ export class PaneWidget implements IDestroyable {
 		}
 	}
 
-	public mouseMoveEvent(event: TouchMouseEvent): void {
+	public mouseMoveEvent(event: TouchMouseEventLocal): void {
 		if (!this._state) {
 			return;
 		}
@@ -469,7 +469,7 @@ export class PaneWidget implements IDestroyable {
 		this._model().zoomTime(middlePoint.x as Coordinate, zoomScale);
 	}
 
-	public hitTest(x: Coordinate, y: Coordinate): HitTestResult | null {
+	public hitTest(x: Coordinate | number, y: Coordinate | number): HitTestResult | null {
 		const state = this._state;
 		if (state === null) {
 			return null;
@@ -670,7 +670,7 @@ export class PaneWidget implements IDestroyable {
 		}
 	}
 
-	private _hitTestPaneView(paneViews: readonly IPaneView[], x: Coordinate, y: Coordinate): HitTestPaneViewResult | null {
+	private _hitTestPaneView(paneViews: readonly IPaneView[], x: Coordinate | number, y: Coordinate): HitTestPaneViewResult | null {
 		for (const paneView of paneViews) {
 			const renderer = paneView.renderer(this._size.h, this._size.w);
 			if (renderer !== null && renderer.hitTest) {
@@ -721,15 +721,15 @@ export class PaneWidget implements IDestroyable {
 		return trackCrosshairOnlyAfterLongTap && this._longTap || this._startTrackPoint !== null;
 	}
 
-	private _correctXCoord(x: Coordinate): Coordinate {
+	private _correctXCoord(x: Coordinate | number): Coordinate {
 		return Math.max(0, Math.min(x, this._size.w - 1)) as Coordinate;
 	}
 
-	private _correctYCoord(y: Coordinate): Coordinate {
+	private _correctYCoord(y: Coordinate | number): Coordinate {
 		return Math.max(0, Math.min(y, this._size.h - 1)) as Coordinate;
 	}
 
-	private _setCrosshairPosition(x: Coordinate, y: Coordinate): void {
+	private _setCrosshairPosition(x: Coordinate | number, y: Coordinate | number): void {
 		this._model().setAndSaveCurrentPosition(this._correctXCoord(x), this._correctYCoord(y), ensureNotNull(this._state));
 	}
 

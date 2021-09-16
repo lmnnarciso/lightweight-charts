@@ -25,6 +25,10 @@ export interface MouseEventHandlers {
 	longTapEvent?: HandlerEventCallback;
 }
 
+export interface TouchMouseEventLocal {
+	readonly localX: number | Coordinate;
+	readonly localY: number | Coordinate;
+}
 export interface TouchMouseEvent {
 	readonly clientX: Coordinate;
 	readonly clientY: Coordinate;

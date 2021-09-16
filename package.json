@@ -1,12 +1,12 @@
 {
-  "private": true,
+  "private": false,
   "version": "3.7.0",
-  "name": "lightweight-charts",
+  "name": "@lmnnarciso/lightweight-charts",
   "author": "TradingView, Inc.",
   "license": "Apache-2.0",
   "description": "Financial lightweight charts built with HTML5 canvas",
   "bugs": {
-    "url": "https://github.com/tradingview/lightweight-charts/issues"
+    "url": "https://github.com/lmnnarciso/lightweight-charts/issues"
   },
   "repository": {
     "type": "git",

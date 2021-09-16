@@ -7,8 +7,8 @@ import { clone, DeepPartial, isBoolean, merge } from '../helpers/strict-type-che
 
 import { BarPrice, BarPrices } from '../model/bar';
 import { ChartOptions, ChartOptionsInternal } from '../model/chart-model';
-import { Point } from '../model/point';
 import { ColorType } from '../model/layout-options';
+import { Point } from '../model/point';
 import { Series } from '../model/series';
 import {
 	AreaSeriesOptions,
@@ -306,9 +306,11 @@ export class ChartApi implements IChartApi, DataUpdatesConsumer<SeriesType> {
 	public unsubscribeClick(handler: MouseEventHandler): void {
 		this._clickedDelegate.unsubscribe(handler);
 	}
-	
+
 	public moveCrosshair(point: Point | null): void {
-		if (!point) return;
+		if (!point) {
+			return;
+		}
 		const paneWidgets = this._chartWidget.paneWidgets();
 		const event = {
 			localX: point.x as number,

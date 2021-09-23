@@ -1,6 +1,6 @@
 {
   "private": false,
-  "version": "3.7.0",
+  "version": "3.7.1",
   "name": "@lmnnarciso/lightweight-charts",
   "author": "TradingView, Inc.",
   "license": "Apache-2.0",
@@ -103,6 +103,7 @@
     "prepare-release": "npm-run-all clean build:release && node ./scripts/clean-package-json.js",
     "size-limit": "size-limit",
     "verify": "npm-run-all clean -p lint check-markdown-links build:prod -p tsc-verify test size-limit",
-    "test": "mocha tests/unittests/**/*.spec.ts"
+    "test": "mocha tests/unittests/**/*.spec.ts",
+	"prepare": "npm install"
   }
 }

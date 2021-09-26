@@ -17,8 +17,8 @@ debug.html
 *.sublime-workspace
 
 # artifacts
-/lib/
-/dist/
+# /lib/
+# /dist/
 /src/**/*.js
 /src/**/*.d.ts
 
